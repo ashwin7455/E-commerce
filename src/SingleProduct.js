@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-return <Wrapper></Wrapper>;
+
 
 const Wrapper = styled.section`
-  .container {
-    padding: 9rem 0;
+.container {
+  padding: 9rem 0;
   }
   .product-data {
     display: flex;
@@ -74,5 +74,11 @@ const Wrapper = styled.section`
     padding: 0 2.4rem;
   }
 `;
+const SingleProduct = ()  => {
+return (
+<Wrapper></Wrapper>
+)
+
+}
 
 export default SingleProduct;
