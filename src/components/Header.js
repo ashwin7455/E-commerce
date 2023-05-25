@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import Nav from "./Nav";
+import Navbar from "./Navbar";
 
 const Header = () => {
   return (
     <MainHeader>
-      <NavLink to="/">
+      <NavLink to="/home">
         <img src="./images/logo.png" className="logo" alt="my logo img" />
       </NavLink>
-      <Nav />
+      <Navbar />
     </MainHeader>
   );
 };
