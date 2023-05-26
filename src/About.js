@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import HeroSection from './components/HeroSection';
 
 const About = () => {
-
+   
     const data = {
-        name: "Yadav Store"
+        name: "Yadav Ecommerce"
     }
+    
   return (
     <Wrapper>
-        <HeroSection mydata = {data} /> 
+       <HeroSection myData={data}/>
     </Wrapper>
   )
 }
