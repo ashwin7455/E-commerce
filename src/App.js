@@ -8,6 +8,7 @@ import Products from "./Products"
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./GlobalStyle";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
     <Router>
         <GlobalStyle/>
         <Header/>
+       
       <Routes>
         <Route path="/home"  element={<Home />}  />
         <Route path="/products" element={<Products/>}  />
@@ -49,8 +51,8 @@ const App = () => {
         <Route path="/about" element={<About/>}  />
         <Route path="/singleproduct/:id" element={<SingleProduct/>}  />
       </Routes>
-
-
+        <Footer/>
+      
     </Router>
     </ThemeProvider>
   )

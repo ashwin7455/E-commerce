@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import HeroSection from './components/HeroSection';
 
+
 const About = () => {
    
     const data = {
@@ -11,6 +12,7 @@ const About = () => {
   return (
     <Wrapper>
        <HeroSection myData={data}/>
+       
     </Wrapper>
   )
 }

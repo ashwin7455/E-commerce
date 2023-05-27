@@ -4,6 +4,8 @@ import HeroSection from "./components/HeroSection";
 import Services from "./components/Services";
 import Trusted from "./components/Trusted";
 
+
+
 const Home = () => {
     const data = {
         name: "Yadav Store"
@@ -14,12 +16,13 @@ const Home = () => {
         <HeroSection  myData = {data}/>
         <Services/>
         <Trusted/>
+        
       </Wrapper>
     </>
   );
 };
 const Wrapper = styled.section`
-  height: 100vh;
+  height: 200vh;
   background-color: ${({ theme }) => theme.colors.bg};
 `;
 

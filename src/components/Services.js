@@ -48,6 +48,7 @@ const Services = () => {
 
 const Wrapper = styled.section`
   padding: 9rem 0;
+  background-color: #fff;
   .grid {
     gap: 4.8rem;
   }
@@ -71,8 +72,8 @@ const Wrapper = styled.section`
     box-shadow: none;
     .services-colum-2 {
       background: ${({ theme }) => theme.colors.bg};
-      margin-top:4em;
-      margin-bottom:4em;
+      margin-top:5em;
+      margin-bottom:5em;
       padding:2em;
       display: flex;
       flex-direction: row;

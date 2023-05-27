@@ -10,7 +10,6 @@ const Navbar = () => {
     const[menuIcon , setMenuIcon] = useState()
     
     
-    
     return (
       <Nav>
         <div className={menuIcon ? "navbar active " : "navbar"}>

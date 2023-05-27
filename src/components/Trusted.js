@@ -3,7 +3,42 @@ import styled from 'styled-components';
 
 const Trusted = () => {
   return (
-    <Wrapper>
+    <Wrapper className='brand-section'>
+      <div className="container">
+        <h3>Trusted by 1000+ Companies</h3>
+        <div className="brand-section-slider">
+          <div className="slide">
+
+            <img 
+            src="https://raw.githubusercontent.com/solodev/infinite-logo-carousel/master/images/image2.png" 
+            alt="" />
+          </div>
+          <div className="slide">
+
+            <img 
+            src="https://raw.githubusercontent.com/solodev/infinite-logo-carousel/master/images/image3.png" 
+            alt="" />
+          </div>
+          <div className="slide">
+
+            <img 
+            src="https://raw.githubusercontent.com/solodev/infinite-logo-carousel/master/images/image4.png" 
+            alt="" />
+          </div>
+          <div className="slide">
+
+            <img 
+            src="https://raw.githubusercontent.com/solodev/infinite-logo-carousel/master/images/image6.png" 
+            alt="" />
+          </div>
+          <div className="slide">
+
+            <img 
+            src="https://raw.githubusercontent.com/solodev/infinite-logo-carousel/master/images/image8.png" 
+            alt="" />
+          </div>
+        </div>
+      </div>
       
     </Wrapper>
   )
