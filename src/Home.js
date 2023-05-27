@@ -22,7 +22,7 @@ const Home = () => {
   );
 };
 const Wrapper = styled.section`
-  height: 200vh;
+  height: full;
   background-color: ${({ theme }) => theme.colors.bg};
 `;
 
