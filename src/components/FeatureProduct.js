@@ -5,6 +5,7 @@ import { useProductContext } from "./context/Productcontex";
 
 const FeatureProduct = () => {
   const { isLoading, featureProducts } = useProductContext()
+  console.log(featureProducts)
 
   if (isLoading) {
     return <div> ......Loading </div>;
@@ -36,7 +37,7 @@ const Wrapper = styled.section`
   figure {
     width: auto;
     display: flex;
-    justify-content: center;
+ justify-content: center;
     align-items: center;
     position: relative;
     overflow: hidden;
