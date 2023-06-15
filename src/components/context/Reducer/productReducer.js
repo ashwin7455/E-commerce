@@ -1,4 +1,4 @@
-const ProductReducer = (state , action) => {
+const ProductReducer = (state, action) => {
     // if (action.type === "SET_LAODING"){
     //     return{
     //         ...state,

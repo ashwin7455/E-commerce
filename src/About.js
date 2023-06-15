@@ -6,7 +6,7 @@ import { useProductContext } from './components/context/Productcontex';
 
 const About = () => {
    
-  const { myName } = useProductContext
+  const { myName } = useProductContext();
 
     const data = {
         name: "Yadav Ecommerce"
