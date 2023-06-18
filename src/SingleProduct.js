@@ -1,5 +1,49 @@
 import styled from "styled-components";
 
+import { useParams } from "react-router-dom";
+
+import React, { useEffect } from 'react'
+import { useProductContext } from "./components/context/Productcontex";
+import PageNavigation from "./components/PageNavigation";
+
+const API = "https://api.pujakaitem.com/api/products"
+
+
+
+const SingleProduct = () => {
+  const { getSingleProduct ,isSingleLoading , singleProduct } = useProductContext()
+   const { id } = useParams()
+
+   const {
+     id:alias,
+     name,
+     company,
+     price,
+     description,
+     category,
+     stocks,
+     stars,
+     reviews,
+   } = singleProduct;
+
+
+   useEffect(() => {
+     getSingleProduct(`${API}?id=${id}`);
+   },[])
+
+  return (
+    <Wrapper>
+      <PageNavigation title = {name}/>
+    </Wrapper>
+  )
+
+}
+
+export default SingleProduct
+
+
+
+
 
 
 const Wrapper = styled.section`
@@ -74,11 +118,9 @@ const Wrapper = styled.section`
     padding: 0 2.4rem;
   }
 `;
-const SingleProduct = ()  => {
-return (
-<Wrapper></Wrapper>
-)
 
-}
 
-export default SingleProduct;
+
+
+
+
