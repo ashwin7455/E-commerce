@@ -45,10 +45,10 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isSingleLoading: true,
-        singleProduct: action.payload,
       };
 
-    case " SET_SINGLE_PRODUCT":
+    case "SET_SINGLE_PRODUCT":
+      console.log(action.payload);
       return {
         ...state,
         isSingleLoading: false,
@@ -63,7 +63,8 @@ const ProductReducer = (state, action) => {
       };
 
     default:
-      return state;
+      // console.log(state);
+      return {...state};
   }
 };
 
