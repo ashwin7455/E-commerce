@@ -14,7 +14,7 @@ import AddToCart from "../src/components/AddToCart";
 const API = "https://api.pujakaitem.com/api/products";
 
 const SingleProduct = () => {
-  const { getSingleProduct, isSingleLoading, singleProduct } =useProductContext();
+  const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
   
   const {
     id: alias,
@@ -27,6 +27,7 @@ const SingleProduct = () => {
     stars,
     reviews,
     image,
+    colors,
   } = singleProduct;
   console.log(singleProduct);
 
