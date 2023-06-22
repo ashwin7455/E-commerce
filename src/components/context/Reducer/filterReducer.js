@@ -6,12 +6,13 @@ const filterReducer = (state,action) => {
        case "LOAD_FLITER_PRODUCTS":
         return {
             ...state,
-            filter_products:[...action.paylaod],
-            all_products: [...action.type],
+            filter_products:action.paylaod,
+            all_products: action.paylaod,
 
         }
 
-        default: return state
+        default:
+             return state;
     }
 
 
