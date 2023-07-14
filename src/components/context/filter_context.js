@@ -8,7 +8,6 @@ const initialState = {
   filter_products: [],
   all_products: [],
   grid_view: false,
-  list_view: true,
 };
 
 export const FilterContextProvider = ({ children }) => {
