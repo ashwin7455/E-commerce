@@ -1,6 +1,6 @@
 //all the data of feature product page is stored in usereducer hook . And from there the we get the data on the main feature product page and we use map method for calling
 const ProductReducer = (state, action) => {
-  // if (action.type === "SET_LAODING"){
+  // if (action.type === "SET_LOADING"){
   //     return{
   //         ...state,
   //         isLoading : true,
@@ -28,7 +28,7 @@ const ProductReducer = (state, action) => {
         featureProducts: featureData,
       };
 
-    case " SET_LAODING":
+    case " SET_LOADING":
       return {
         ...state,
         isLoading: true,
@@ -41,7 +41,7 @@ const ProductReducer = (state, action) => {
         isError: true,
       };
 
-    case " SET_SINGLE_LAODING":
+    case " SET_SINGLE_LOADING":
       return {
         ...state,
         isSingleLoading: true,

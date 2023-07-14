@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from "./Reducer/productReducer";
 
-const AppContext = createContext(); //YAHA PAR EK store bna liya gya hai
+const AppContext = createContext(); //Yaha PAR EK store bna liya gya hai
 
 const API = "https://api.pujakaitem.com/api/products";
 
@@ -13,6 +13,7 @@ const initialState = {
   featureProducts: [],
   isSingleLoading: false,
   singleProduct: {},
+
 };
 
 const AppProvider = ({ children }) => {   //children refers to the app component  
@@ -22,7 +23,7 @@ const AppProvider = ({ children }) => {   //children refers to the app component
     dispatch({ type: "SET_LOADING" });
     try {  //if for any reason we didn't get our data then show error ,we will do this by try and catch method
       const res = await axios.get(url); //we use axios here ,  Axios is a library that serves to create HTTP requests that are present externally. when we use axios then it will return promise //axios gives data in the data object.
-      //whne we call api it give us a respnse (res)
+      //when we call api it give us a response (res)
       const products = await res.data; //await is like  " thoda ruk jao phele sara data aa jane do "
       dispatch({ type: "SET_API_DATA", payload: products }); //dispatch ka kaam hai -> kaam lagvana for that we used to declare the type means which type of work //PAYLOAD -> jo kaam humm kar rhe hai use krne k liye hume kaun kaun se data ki jarurt padegi here we use products
     } catch (error) {
