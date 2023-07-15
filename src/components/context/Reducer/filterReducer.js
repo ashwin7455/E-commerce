@@ -31,6 +31,20 @@ const filterReducer = (state,action) => {
                 ...state, 
                 sorting_value: sort_value,
             };
+           
+        case "SORTING_PRODUCTS":
+            let newSortData;
+            let tempSortProduct = [...action.payload]
+
+            if(state.sorting_value === "a-z"){
+                newSortData =tempSortProduct.sort((a,b) => {
+               return a.name.localeCompare(b.name);
+            })
+            }
+            return{
+                ...state,
+                filter_products: newSortData,
+            }    
 
         default: 
              return state;

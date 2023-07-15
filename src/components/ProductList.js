@@ -7,7 +7,7 @@ const ProductList = () => {
     const { filter_products , grid_view} = useFilterContext();
     console.log(filter_products);
 
-    if(grid_view === true) {
+    if(grid_view === true)  {
         return <GridView products ={filter_products} />
     }   
      if(grid_view === false){
