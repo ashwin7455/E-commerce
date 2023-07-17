@@ -4,17 +4,17 @@ import { useFilterContext } from './context/filter_context';
 
 const FilterSection = () => {
   const{
-    filters:{ text },
+    filters: { text },
     updateFilterValue,
   } = useFilterContext();
-  
+
   return  <Wrapper>
       <div className="filter-search">
         <form onSubmit={ (e) => e.preventDefault }>
           <input 
           type="text"
           name="text" 
-          value="text"
+          value={text}
           onChange={updateFilterValue}/>
         </form>
       </div>
