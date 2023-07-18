@@ -1,127 +1,122 @@
-const filterReducer = (state,action) => {
-    
+const filterReducer = (state, action) => {
+  switch (action.type) {
+    case "LOAD_FILTER_PRODUCTS":
+      return {
+        ...state,
+        filter_products: action.payload,
+        all_products: action.payload,
+      };
 
-    switch (action.type) {
+    case "SET_GRID_VIEW":
+      return {
+        ...state,
+        grid_view: true,
+      };
 
-       case "LOAD_FILTER_PRODUCTS":
-        return {
-            ...state,
-            filter_products:action.payload,
-            all_products: action.payload,
+    case "SET_LIST_VIEW":
+      return {
+        ...state,
+        grid_view: false,
+      };
 
+    case "GET_SORT_VALUE":
+      // let userSortValue = document.getElementById("sort")
+      // let sort_value = userSortValue.options[userSortValue.selectedIndex].value;
+      // console.log(sort_value)
+      return {
+        ...state,
+        sorting_value: action.payload,
+      };
+
+    case "SORTING_PRODUCTS":
+      let newSortData;
+      // let tempSortProduct = [...action.payload];
+
+      const { filter_products, sorting_value } = state;
+      let tempSortProduct = [...filter_products];
+
+      const sortingProducts = (a, b) => {
+        if (sorting_value === "lowest") {
+          return a.price - b.price;
         }
 
-        case "SET_GRID_VIEW":
-            return{
-                ...state,
-                grid_view:true,
-            }
+        if (sorting_value === "highest") {
+          return b.price - a.price;
+        }
+        if (sorting_value === "a-z") {
+          return a.name.localeCompare(b.name);
+        }
+        if (sorting_value === "z-a") {
+          return b.name.localeCompare(a.name);
+        }
+      };
 
-        case "SET_LIST_VIEW":
-            return{
-                ...state,
-                grid_view: false,
-            };   
-         
-        case "GET_SORT_VALUE":
-            // let userSortValue = document.getElementById("sort")  
-            // let sort_value = userSortValue.options[userSortValue.selectedIndex].value;
-            // console.log(sort_value)
-            return{
-                ...state, 
-                sorting_value: action.payload
-            };
-           
-        case "SORTING_PRODUCTS":
-            let newSortData;
-            // let tempSortProduct = [...action.payload];
+      //
+      // if(state.sorting_value === "highest"){
+      // const sortingProducts = (a,b) => {
+      //   return b.price - a.price;
+      // }
+      //
+      //   newSortData = tempSortProduct.sort(sortingProducts)
+      //   }
+      //
 
-            const {filter_products, sorting_value} = state
-            let tempSortProduct = [...filter_products];
+      // if(state.sorting_value === "a-z"){
+      // newSortData =tempSortProduct.sort((a,b) => {
+      //    return a.name.localeCompare(b.name);
+      // })
+      // }
+      //
+      // if(state.sorting_value === "z-a"){
+      // newSortData =tempSortProduct.sort((a,b) => {
+      //    return b.name.localeCompare(a.name);
+      // })
+      // }
 
+      newSortData = tempSortProduct.sort(sortingProducts);
 
-            const sortingProducts = (a,b) => {
-                if(sorting_value === "lowest"){
-                    return a.price - b.price;
-            }
+      return {
+        ...state,
+        filter_products: newSortData,
+      };
 
-            if(sorting_value === "highest"){
-                return b.price - a.price;
-            }
-            if(sorting_value === "a-z"){
-                return a.name.localeCompare(b.name);
-            }
-            if(sorting_value === "z-a"){
-                return b.name.localeCompare(a.name);
-            }
-        };
- 
-         
-// 
-            // if(state.sorting_value === "highest"){
-                // const sortingProducts = (a,b) => {
-                //   return b.price - a.price;
-                // }
-                //   
-                //   newSortData = tempSortProduct.sort(sortingProducts)
-            //   }
-// 
+    case "UPDATE_FILTERS_VALUE":
+      const { name, value } = action.payload;
 
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [name]: value,
+        },
+      };
 
-            // if(state.sorting_value === "a-z"){
-                // newSortData =tempSortProduct.sort((a,b) => {
-            //    return a.name.localeCompare(b.name);
-            // })
-            // }
-            // 
-            // if(state.sorting_value === "z-a"){
-                // newSortData =tempSortProduct.sort((a,b) => {
-            //    return b.name.localeCompare(a.name);
-            // })
-            // }
+    case "FILTER_PRODUCTS":
+      let { all_products } = state;
+      let tempFilterProduct = [...all_products];
 
-            newSortData = tempSortProduct.sort(sortingProducts)
-            
-            return{
-                ...state,
-                filter_products: newSortData,
-            }    
+      const { text, category } = state.filters;
 
-            case "UPDATE_FILTERS_VALUE":
-                const {name,value} = action.payload
+      if (text) {
+        tempFilterProduct = tempFilterProduct.filter((curElem) => {
+          return curElem.name.toLowerCase().includes(text); //"includes method" calls only that card which includes all the text which we searched in search bar
+        });
+      }
 
-                return{
-                    ...state,
-                    filters:{
-                        ...state.filters,
-                        [name]: value,              
-                    }
-                }
-            
-           case "FILTER_PRODUCTS":
-            let { all_products } = state;
-            let tempFilterProduct = [...all_products]
-             
-           const { text } = state.filters;
+      if(category){
+        tempFilterProduct = tempFilterProduct.filter((curElem) => {
+            return curElem.category === category;
+        })
+      }
 
-           if(text){
-            tempFilterProduct =tempFilterProduct.filter((curElem) => {
-              return curElem.name.toLowerCase().includes(text); //"includes method" calls only that card which includes all the text which we searched in search bar 
-            })
-           }
+      return {
+        ...state,
+        filter_products: tempFilterProduct,
+      };
 
-
-            return{
-                ...state,
-                filter_products:tempFilterProduct,
-            }
-
-
-        default: 
-             return state;
-    }
-
-
+    default:
+      return state;
+  }
 };
 
 export default filterReducer;
