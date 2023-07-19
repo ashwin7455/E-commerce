@@ -90,7 +90,7 @@ const filterReducer = (state, action) => {
           [name]: value,
         },
       };
-
+   
     case "FILTER_PRODUCTS":
       let { all_products } = state;
       let tempFilterProduct = [...all_products];

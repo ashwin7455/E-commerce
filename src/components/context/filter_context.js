@@ -37,7 +37,7 @@ export const FilterContextProvider = ({ children }) => {
   // sorting function
 
   const sorting = (event) => {
-    let userValue = event.target.value
+    let userValue = event.target.value 
     dispatch({ type: "GET_SORT_VALUE",payload:userValue });
   };
 

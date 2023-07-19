@@ -41,9 +41,9 @@ const categoryOnlyData = getUniqueData(all_products, "category" )
         <h3>Category</h3>
         <div>{ categoryOnlyData.map((curElem , index) => {
           return <button key={index}
-             type="button"
+             type= "button"
              name = "category"
-             value= {category}
+             value= {curElem}
              onClick={updateFilterValue}>
             {curElem}
           </button>
