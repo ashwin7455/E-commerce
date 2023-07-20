@@ -1,57 +1,134 @@
-import React from 'react'
-import styled from 'styled-components';
-import { useFilterContext } from './context/filter_context';
+import styled from "styled-components";
+import { useFilterContext } from "./context/filter_context";
+import { FaCheck } from "react-icons/fa";
+import FormatPrice from "./Helpers/FormatPrice";
+import { Button } from "../styles/Button";
+
 
 const FilterSection = () => {
-  const{
-    filters: { text , category },
-    updateFilterValue,
-    all_products,
-  } = useFilterContext();
-  
-  // to get the unique data from each fields 
-  const getUniqueData = ( data, property ) => {
+  const { 
+    filters: 
+    { 
+      text,  
+      maxPrice, 
+      minPrice, 
+      price,
+      colors, 
+    }, 
+    updateFilterValue, 
+    all_product , 
+    clearFilter } = useFilterContext();
+
+  const getUniqueData = (data, property) => {
     let newVal = data.map((curElem) => {
-      return curElem[property]
+      return curElem[property];
     });
-    newVal = ["All" , ...new Set(newVal)]
-    console.log(newVal)
-  }
 
-//WE NEED UNIQUE DATA
-const categoryOnlyData = getUniqueData(all_products, "category" )
+    if (property === "colors") {
+      return newVal = ["all", ...new Set([].concat(...newVal))]
+    } else {
+      return newVal = ["all", ...new Set(newVal)];
+    }
+    // console.log(newVal);
+  };
 
-
-
-
-  return  <Wrapper>
-      <div className="filter-search">
-        <form onSubmit={ (e) => e.preventDefault }>
-          <input 
+  const categoryOnlyData = getUniqueData(all_product, "category");
+  const companyOnlyData = getUniqueData(all_product, "company");
+  const colorOnlyData = getUniqueData(all_product, "colors");
+  // console.log(colorOnlyData);
+  return <Wrapper>
+    <div className="filter-search">
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input
           type="text"
-          name="text" 
+          name="text"
           value={text}
           onChange={updateFilterValue}
-          placeholder='SEARCH'
-          />
-        </form>
-      </div>
+          placeholder="SEARCH"
+        />
+      </form>
+    </div>
 
-      <div className="filter-category">
-        <h3>Category</h3>
-        <div>{ categoryOnlyData.map((curElem , index) => {
-          return <button key={index}
-             type= "button"
-             name = "category"
-             value= {curElem}
-             onClick={updateFilterValue}>
+    <div className="filter-category">
+      <h3>Category</h3>
+      <div>
+        {categoryOnlyData.map((curElem, index) => {
+          return <button key={index} 
+          type="button" 
+          name="category" 
+          value={curElem} 
+          onClick={updateFilterValue}>
             {curElem}
           </button>
-        }) }</div>
+        })}
       </div>
-    </Wrapper>
-  
+    </div>
+    <div className="filter-company">
+      <h3>Company</h3>
+      <form action="#">
+        {/* <label></label> */}
+        <select 
+        name="company" 
+        id="company" 
+        className="filter-company--select" 
+        onClick={updateFilterValue}>
+          {
+            companyOnlyData.map((curElem, index) => {
+              return <option key={index} 
+              name="company" 
+              value={curElem}>
+                {curElem} 
+                </option>
+            })
+          }
+        </select>
+      </form>
+    </div>
+    <div className="filter-colors colors">
+      <h3>Colors</h3>
+      <div className="filter-color-style">{
+        colorOnlyData.map((curElem, index) => {
+          if (curElem === "all") {
+            return <button key={index} 
+            name="colors" 
+            value={curElem} 
+            type="button" 
+            className="color-all--style"
+             onClick={updateFilterValue}>all</button>
+          }
+          return <button key={index} 
+          name="colors" 
+          value={curElem} 
+          type="button" 
+          style={{ backgroundColor: curElem }} 
+          className={colors === curElem ? "btnStyle active" : "btnStyle"} 
+          onClick={updateFilterValue}>{colors === curElem ? 
+          <FaCheck className="checkStyle" /> : null}
+          </button>
+        })
+      }
+      </div>
+    </div>
+
+    <div className="filter_price">
+      <h3>Price</h3>
+      <p><FormatPrice price={price} /> </p>
+      <p>
+        <input 
+        type="range" 
+        name="price" 
+        min={minPrice} 
+        max={maxPrice} 
+        value={price} 
+        onChange={updateFilterValue} />
+      </p>
+    </div>
+    <div className="filter-clear">
+      <Button className="btn" onClick={clearFilter}>Clear Filter</Button>
+    </div>
+  </Wrapper>
 }
+
 
 const Wrapper = styled.section`
   padding: 5rem 0;

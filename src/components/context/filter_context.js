@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import { useProductContext } from "./Productcontex";
 import reducer from "./Reducer/filterReducer";
 
@@ -9,22 +9,20 @@ const initialState = {
   all_products: [],
   grid_view: true,
   sorting_value: "lowest",
-  filters:{
+  filters: {
     text: "",
     category: "all",
     company: "all",
-  }
+    color: "all",
+  },
 };
 
 export const FilterContextProvider = ({ children }) => {
   const { products } = useProductContext();
 
-  console.log(products)
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
-//   to set the grid view
-
+  // to set the grid view
   const setGridView = () => {
     return dispatch({ type: "SET_GRID_VIEW" });
   };
@@ -35,39 +33,39 @@ export const FilterContextProvider = ({ children }) => {
   };
 
   // sorting function
-
   const sorting = (event) => {
-    let userValue = event.target.value 
-    dispatch({ type: "GET_SORT_VALUE",payload:userValue });
+    let userValue = event.target.value;
+    dispatch({ type: "GET_SORT_VALUE", payload: userValue });
   };
 
-  //update the filter values
-  const updateFilterValue = (event) =>{
-   let name =  event.target.name;
-   let value=  event.target.value;
-    
-   return dispatch({type:"UPDATE_FILTERS_VALUE" ,payload:{name,value}})
-  }
-  
-  // to sort the products
-  useEffect(() => {
-    dispatch({ type: "FILTER_PRODUCTS" })
-   dispatch({ type: "SORTING_PRODUCTS",  })
-  },[state.sorting_value,products,state.filters])
+  // update the filter values
+  const updateFilterValue = (event) => {
+    let name = event.target.name;
+    let value = event.target.value;
 
+    return dispatch({ type: "UPDATE_FILTERS_VALUE", payload: { name, value } });
+  };
+
+  // to sort the product
+  useEffect(() => {
+    dispatch({ type: "FILTER_PRODUCTS" });
+    dispatch({ type: "SORTING_PRODUCTS" });
+  }, [products, state.sorting_value, state.filters]);
+
+  // to load all the products for grid and list view
   useEffect(() => {
     dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: products });
   }, [products]);
 
   return (
-    <FilterContext.Provider 
-    value={{
-         ...state,
-         setGridView,
-         setListView,
-         sorting,
-         updateFilterValue,
-          }}>
+    <FilterContext.Provider
+      value={{
+        ...state,
+        setGridView,
+        setListView,
+        sorting,
+        updateFilterValue,
+      }}>
       {children}
     </FilterContext.Provider>
   );
@@ -76,3 +74,64 @@ export const FilterContextProvider = ({ children }) => {
 export const useFilterContext = () => {
   return useContext(FilterContext);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
