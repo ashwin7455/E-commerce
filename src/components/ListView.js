@@ -29,7 +29,7 @@ const ListView = ({ products }) => {
         </div>
       )
     })}</div>
-    
+  
     </Wrapper>
     
   )
