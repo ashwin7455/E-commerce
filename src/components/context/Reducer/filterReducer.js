@@ -30,7 +30,7 @@ const filterReducer = (state, action) => {
 
     case "SORTING_PRODUCTS":
       let newSortData;
-      let tempSortProduct = [...action.payload];
+      let tempSortProduct ;
 
       function sortingProducts(a, b) {
         if (state.sorting_value === "lowest") {
@@ -52,7 +52,7 @@ const filterReducer = (state, action) => {
         }
       }
 
-      newSortData = tempSortProduct.sort(sortingProducts);
+      // newSortData = tempSortProduct.sort(sortingProducts);
       // console.log("newsoprt dat" + newSortData[0]);
 
       return {

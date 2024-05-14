@@ -10,6 +10,7 @@ import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
 import Star from "../src/components/Star";
 import AddToCart from "../src/components/AddToCart";
+// import Products from "./Products";
 
 const API = "https://api.pujakaitem.com/api/products";
 
@@ -17,17 +18,14 @@ const SingleProduct = () => {
   const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
   
   const {
-    id: alias,
     name,
     company,
     price,
     description,
-    category,
     stock,
     stars,
     reviews,
     image,
-    colors,
   } = singleProduct;
   console.log(singleProduct);
 
@@ -35,7 +33,7 @@ const SingleProduct = () => {
   const { id } = useParams();
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`);
-  }, []);
+  }, );
 
   if (isSingleLoading) {
     return <div className="page-loading">Loading....</div>;

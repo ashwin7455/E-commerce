@@ -6,18 +6,7 @@ import { Button } from "../styles/Button";
 
 
 const FilterSection = () => {
-  const { 
-    filters: 
-    { 
-      text,  
-      maxPrice, 
-      minPrice, 
-      price,
-      colors, 
-    }, 
-    updateFilterValue, 
-    all_product , 
-    clearFilter } = useFilterContext();
+  const { filters: { text, maxPrice, minPrice, price,colors,},updateFilterValue,all_product ,clearFilter } = useFilterContext();
 
   const getUniqueData = (data, property) => {
     let newVal = data.map((curElem) => {
